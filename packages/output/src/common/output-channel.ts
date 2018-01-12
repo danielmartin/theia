@@ -5,14 +5,13 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { Emitter, Event } from "vscode-languageserver";
+import { Emitter, Event } from "@theia/core";
 import { injectable, inject } from "inversify";
-import { OutputPreferences } from "@theia/output/lib/common/output-preferences";
+import { OutputPreferences } from "./output-preferences";
 
 export interface OutputChannel {
     append(value: string): void;
     appendLine(line: string): void;
-    show(preserveFocus?: boolean): void;
 }
 
 @injectable()
@@ -76,9 +75,5 @@ export class OutputChannelImpl implements OutputChannel {
         } else {
             return this.lines;
         }
-    }
-
-    show(preserveFocus?: boolean): void {
-        // no-op
     }
 }

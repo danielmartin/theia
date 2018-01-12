@@ -8,8 +8,8 @@
 import { injectable, inject } from 'inversify';
 import { MessageService } from '@theia/core/lib/common';
 import { MessageActionItem, MessageType } from 'vscode-base-languageclient/lib/protocol';
-import { Window } from 'vscode-base-languageclient/lib/services';
-import { OutputChannelManager, OutputChannel } from '@theia/output/lib/common/output-channel';
+import { Window, OutputChannel } from 'vscode-base-languageclient/lib/services';
+import { OutputChannelManager } from '@theia/output/lib/common/output-channel';
 
 @injectable()
 export class WindowImpl implements Window {
@@ -43,6 +43,13 @@ export class WindowImpl implements Window {
     }
 
     createOutputChannel(name: string): OutputChannel {
-        return this.outputChannelManager.getChannel(name);
+        const outputChannel = this.outputChannelManager.getChannel(name);
+        return {
+            append: outputChannel.append.bind(outputChannel),
+            appendLine: outputChannel.appendLine.bind(outputChannel),
+            show: function (preserveFocus?: boolean): void {
+                // no-op
+            }
+        };
     }
 }
