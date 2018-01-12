@@ -37,11 +37,14 @@ export class OutputContribution implements CommandContribution, MenuContribution
         });
     }
 
-    async toggleOutputWidget(): Promise<OutputWidget> {
-        const activeWidget = this.app.shell.activeWidget;
-        if (activeWidget instanceof OutputWidget)  {
-            activeWidget.close();
-            return activeWidget;
+    async toggleOutputWidget(): Promise<OutputWidget |  undefined> {
+        const outputWidgets = this.widgetManager.getWidgets(OUTPUT_WIDGET_KIND);
+        if (outputWidgets.length > 0) {
+            const outputWidget = outputWidgets[0];
+            if (outputWidget.isVisible) {
+                outputWidget.close();
+            }
+            return undefined;
         } else {
             const outputWidget = await this.widgetManager.getOrCreateWidget<OutputWidget>(OUTPUT_WIDGET_KIND);
             if (!outputWidget.isAttached) {
