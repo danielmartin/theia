@@ -8,14 +8,14 @@
 import { injectable, inject } from 'inversify';
 import { MessageService } from '@theia/core/lib/common';
 import { MessageActionItem, MessageType } from 'vscode-base-languageclient/lib/protocol';
-import { Window, OutputChannel } from 'vscode-base-languageclient/lib/services';
-import { ObservableOutputChannelManager } from "./observable-output-channel";
+import { Window } from 'vscode-base-languageclient/lib/services';
+import { OutputChannelManager, OutputChannel } from '@theia/output/lib/common/output-channel';
 
 @injectable()
 export class WindowImpl implements Window {
     constructor(
         @inject(MessageService) protected readonly messageService: MessageService,
-        @inject(ObservableOutputChannelManager) protected readonly outputChannelManager: ObservableOutputChannelManager) {
+        @inject(OutputChannelManager) protected readonly outputChannelManager: OutputChannelManager) {
     }
 
     showMessage<T extends MessageActionItem>(type: MessageType, message: string, ...actions: T[]): Thenable<T | undefined> {

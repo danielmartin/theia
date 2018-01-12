@@ -7,5 +7,4 @@
 
 export * from './language-contribution';
 export * from './languageclient-services';
-export * from './observable-output-channel';
 export * from './window-impl';

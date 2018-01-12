@@ -1,17 +1,18 @@
 {
-  "name": "@theia/output-view",
+  "name": "@theia/output",
   "version": "0.3.2",
-  "description": "Theia - Output View Extension",
+  "description": "Theia - Output Extension",
   "dependencies": {
     "@theia/core": "^0.3.2",
-    "@theia/languages": "^0.3.2"
+    "@theia/preferences-api": "^0.3.2",
+    "vscode-languageserver": "^3.4.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/output-view-frontend-module"
+      "frontend": "lib/browser/output-frontend-module"
     }
   ],
   "keywords": [
