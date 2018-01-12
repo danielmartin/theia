@@ -12,7 +12,7 @@ import {
     PreferenceService,
     PreferenceContribution,
     PreferenceSchema
-} from '@theia/preferences/lib/common';
+} from '@theia/preferences-api/lib/common';
 
 export const OutputConfigSchema: PreferenceSchema = {
     "type": "object",
